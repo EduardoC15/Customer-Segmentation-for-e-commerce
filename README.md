@@ -1,68 +1,90 @@
 # Customer Segmentation for E-Commerce
 
-## Descripción
-Este proyecto analiza datos transaccionales de un minorista en línea con sede en el Reino Unido para segmentar clientes utilizando algoritmos de clustering. El objetivo principal es mejorar la efectividad del marketing y aumentar las ventas mediante la identificación de perfiles de clientes distintos basados en su comportamiento de compra.
+## Description
+This project analyzes transactional data from a UK-based online retailer to segment customers using clustering algorithms. The primary goal is to enhance marketing effectiveness and increase sales by identifying distinct customer profiles based on their purchasing behavior.
 
 ## Dataset
-El dataset proviene del **UCI Machine Learning Repository** y contiene transacciones realizadas entre 2010 y 2011. Incluye las siguientes columnas:
+The dataset is sourced from the **UCI Machine Learning Repository** and contains transactions from 2010 to 2011. It includes the following columns:
 
-- **InvoiceNo**: Identificador único de cada transacción. Si comienza con 'C', indica una cancelación.
-- **StockCode**: Código único asignado a cada producto.
-- **Description**: Descripción del producto.
-- **Quantity**: Cantidad de unidades compradas en la transacción.
-- **InvoiceDate**: Fecha y hora de la transacción.
-- **UnitPrice**: Precio unitario del producto en libras esterlinas.
-- **CustomerID**: Identificador único del cliente.
-- **Country**: País del cliente.
+- **Invoice**: Unique identifier for each transaction. If it starts with 'C', it indicates a cancellation.
+- **StockCode**: Unique code assigned to each product.
+- **Description**: Product description.
+- **Quantity**: Number of units purchased in the transaction.
+- **InvoiceDate**: Date and time of the transaction.
+- **UnitPrice**: Unit price of the product in pounds sterling.
+- **Customer ID**: Unique customer identifier.
+- **Country**: Customer's country.
 
-Enlace al dataset: [Online Retail Dataset](https://archive.ics.uci.edu/ml/datasets/online+retail)
+Link to the dataset: [Online Retail Dataset](https://archive.ics.uci.edu/ml/datasets/online+retail)
 
-El archivo utilizado en este proyecto es `online_retail_II.xlsx`, específicamente la hoja `Year 2010-2011`.
+The file used in this project is `online_retail_II.xlsx`, specifically the sheet `Year 2010-2011`.
 
-## Metodología
-El análisis se llevó a cabo en las siguientes etapas:
+## Methodology
+The analysis was conducted in the following stages:
 
-1. **Limpieza de Datos**:
-   - Eliminación de valores nulos (24.93% en `Customer ID` y 0.27% en `Description`).
-   - Eliminación de duplicados (10,147 filas duplicadas identificadas).
-   - Manejo de transacciones canceladas (2.21% del total).
+1. **Data Cleaning**:
+   - Removed null values (24.93% in `Customer ID` and 0.27% in `Description`).
+   - Removed duplicates (5,225 duplicate rows identified).
+   - Handled canceled transactions (2.21% of the total).
+   - Cleaned the `Description` column by removing rows containing service descriptions to focus solely on product transactions.
+   - Corrected inconsistencies where multiple `StockCode` were associated with a single description and vice versa.
+   - Treated zero unit prices by removing or correcting entries to avoid distortions in the analysis.
 
-2. **Ingeniería de Características**:
-   - Creación de características centradas en el cliente, incluyendo:
-     - **Recency**: Días desde la última compra.
-     - **Total_Transactions**: Número total de transacciones por cliente.
-     - **Total_Products_Purchased**: Total de productos comprados.
-     - **TotalPrice**: Gasto total por cliente.
-     - **Average_Transaction_Value**: Valor promedio por transacción.
-     - **Unique_Products_Purchased**: Número de productos únicos comprados.
-     - **Average_Days_Between_Purchases**: Promedio de días entre compras consecutivas.
-     - **Day_Of_Week**: Día de la semana favorito para comprar.
-     - **Hour**: Hora del día favorita para comprar.
+2. **Feature Engineering**:
+   - Created customer-centric features, including:
+     - **Recency**: Days since the last purchase.
+     - **Total_Transactions**: Total number of transactions per customer.
+     - **Total_Products_Purchased**: Total products purchased.
+     - **Total_Spend**: Total expenditure per customer.
+     - **Average_Transaction_Value**: Average value per transaction.
+     - **Unique_Products_Purchased**: Number of unique products purchased.
+     - **Cancellation_Frequency**: Total number of canceled transactions.
+     - **Cancellation_Rate**: Proportion of canceled transactions.
+     - **Monthly_Spending_Mean**: Average monthly spending.
+     - **Monthly_Spending_Std**: Standard deviation of monthly spending.
 
 3. **Clustering**:
-   - Aplicación del algoritmo K-means para segmentar a los clientes en función de las características generadas.
+   - Applied the K-means algorithm to segment customers based on the generated features.
 
-## Resultados
-Soon
+## Results
+[To be updated with specific results from the clustering analysis.]
 
-## Visualizaciones
-Las visualizaciones generadas durante el análisis incluyen:
-- Gráficos de dispersión para explorar las relaciones entre características como `Recency`, `TotalPrice` y `Total_Transactions`.
-- Representaciones de los clusters resultantes (se recomienda incluir capturas de pantalla o enlaces a los gráficos en el notebook).
+## Visualizations
+Visualizations generated during the analysis include:
+- Scatter plots to explore relationships between features such as `Recency`, `Total_Spend`, and `Total_Transactions`.
+- Representations of the resulting clusters (screenshots or links to graphs in the notebook are recommended).
 
-Estas visualizaciones están disponibles en el notebook `e-commerce_RFM_Segmentation.ipynb`.
+These visualizations are available in the notebook `e-commerce_RFM_Segmentation.ipynb`.
 
-## Requisitos
-Para ejecutar este proyecto, asegúrate de tener instaladas las siguientes dependencias:
+## Requirements
+To run this project, ensure you have the following dependencies installed:
 - Python 3.12+
 - pandas
 - numpy
 - matplotlib
 - seaborn
 - plotly
-- scikit-learn (para K-means)
-- openpyxl (para leer archivos `.xlsx`)
+- scikit-learn (for K-means)
+- openpyxl (to read `.xlsx` files)
 
-Instala las dependencias con:
+Install the dependencies with:
 ```bash
 pip install -r requirements.txt
+```
+
+## Customer Dataset Description
+Below is a description of the features in the customer dataset:
+
+| **Feature**                    | **Description**                                                                                      |
+|-------------------------------|------------------------------------------------------------------------------------------------------|
+| Customer ID                   | Identifier uniquely assigned to each customer, used to distinguish individual customers.             |
+| Recency                       | The number of days that have passed since the customer's last purchase.                             |
+| Total_Transactions            | The total number of transactions made by the customer.                                              |
+| Total_Products_Purchased      | The total quantity of products purchased by the customer across all transactions.                   |
+| Total_Spend                   | The total amount of money the customer has spent across all transactions.                           |
+| Average_Transaction_Value     | The average value of the customer's transactions, calculated as total spend divided by transactions. |
+| Unique_Products_Purchased     | The number of different products the customer has purchased.                                        |
+| Cancellation_Frequency        | The total number of transactions that the customer has canceled.                                    |
+| Cancellation_Rate             | The proportion of transactions that the customer has canceled, calculated as cancellations/total.   |
+| Monthly_Spending_Mean         | The average monthly spending of the customer.                                                       |
+| Monthly_Spending_Std          | The standard deviation of the customer's monthly spending, indicating variability.                  |
