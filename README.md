@@ -45,8 +45,8 @@ The analysis was conducted in the following stages:
      - **Monthly_Spending_Std**: Standard deviation of monthly spending.
 
 3. **Outlier Detection**:
-   - Identified outliers in key features such as `Quantity`, `UnitPrice`, and `Total_Spend` using statistical methods (e.g., IQR or Z-score).
-   - Outliers were either removed or capped to prevent them from skewing the clustering results.
+   - Identified outliers in key features such as 'Recency', 'Total_Transactions' and 'Total_Spend' using IsolationForest.
+   - Outliers were removed.
 
 4. **Correlation Analysis**:
    - Analyzed correlations between features to understand relationships and inform feature selection.
