@@ -46,7 +46,7 @@ The analysis was conducted in the following stages:
 
 3. **Outlier Detection**:
    - Identified outliers in key features such as 'Recency', 'Total_Transactions' and 'Total_Spend' using IsolationForest.
-   - Outliers were removed.
+   - IsolationForest detected as Outliers the most important customers, due the importance of these customers, we maintain them.
 
 4. **Correlation Analysis**:
    - Analyzed correlations between features to understand relationships and inform feature selection.
@@ -64,34 +64,44 @@ The analysis was conducted in the following stages:
 
 8. **Churn Analysis**:
    - Identified churned customers as those with a recency greater than 180 days.
-   - Refined the segmentation by labeling churned customers as "Churned [Segment]" (e.g., "Churned Champion") to prioritize recovery efforts for high-value lost customers.
+   - Refined the segmentation by labeling churned customers as "Churned [Segment]" to prioritize recovery efforts for high-value lost customers.
 
 9. **Exporting the Cleaned Data**:
    - Exported the cleaned transactional data to `Transactions_cleaned.csv`.
    - Exported the cleaned customer data with engineered features and segmentation labels to `Customer_cleaned.csv`.
 
 ## Clustering Results
-The clustering analysis identified four main customer segments:
 
-- **Champion:** Very low recency, extremely high purchase frequency, and the highest total spend. Although they represent only 3.19% of the customer base, they are the most valuable. Should be prioritized for retention and rewards.
-- **Loyal:** Frequent buyers with strong spending and good recency. Representing 15.47%, they contribute consistently to revenue. Ideal candidates for loyalty programs and engagement campaigns.
-- **Regular:** The largest segment (57.20%) with moderate purchase activity and average spending. They form the core base with potential to be upsold or converted into more valuable customers.
-- **Passenger:** High recency, low frequency, and low total spend. These customers make up 24.13% and may be on the verge of churning. Consider reactivation strategies like targeted offers or win-back campaigns.
+The clustering analysis identified four main customer segments based on RFM values:
+
+- **Champion (0.25%)**: Customers with very recent activity, high frequency, and the highest total spend. Although this group is the smallest, it is the most valuable. They should be prioritized with personalized rewards and premium services to maintain their loyalty.
+- **Loyal (4.70%)**: Active and frequent buyers who demonstrate strong engagement. Representing a stable segment, they are excellent candidates for loyalty programs, exclusive offers, and upselling strategies.
+- **Regular (70.40%)**: The core customer base, exhibiting moderate frequency and spending. While consistent, they hold significant potential to be nurtured into higher-value segments.
+- **Passenger (4.86%)**: Customers with high recency and low engagement. Though still active, they are at risk of churning and could benefit from low-effort re-engagement initiatives.
 
 ### Evaluation Metrics
-- **Silhouette Score (0.6240):** A value close to 0.65 indicates good intra-cluster cohesion and inter-cluster separation. The clustering structure is solid.
-- **Calinski-Harabasz Score (5654.49):** A high value suggesting the clusters are well-defined and compact.
-- **Davies-Bouldin Score (0.6687):** A low score, which confirms distinct and non-overlapping clusters.
 
-### Churn Analysis
-Customers with a recency greater than 180 days were classified as churned, refining the segmentation further:
+- **Silhouette Score (0.6758):** A value close to 0.68 suggests well-defined clusters with good cohesion and separation. This indicates a reliable clustering structure.
+- **Calinski-Harabasz Score (3732.48):** A high score, reinforcing that the clusters are dense and well-separated.
+- **Davies-Bouldin Score (0.7267):** A relatively low value, confirming that clusters are distinct and not overlapping excessively.
 
-- **Churned Passenger (19.82%)**: A significant group of disengaged customers who require targeted reactivation efforts.
-- **Passenger (4.30%)**: Non-churned Passengers, indicating a small group of low-engagement customers who are still active but at risk.
-- **Regular (57.20%)**: Remains the largest and most stable segment.
-- **Loyal (15.40%)**: Active, frequent buyers who should be nurtured to maintain loyalty.
-- **Churned Loyal (0.06%)**: Small but critical group for recovery due to their historical value.
-- **Champion (3.19%)**: A small but highly valuable group of active, high-spending customers.
+## Churn Analysis
+
+To enhance the segmentation, customers with **recency > 180 days** were labeled as **churned**. This provides a clearer picture of at-risk and inactive customers.
+
+### **Updated Segmentation with Churn Labels:**
+
+- **Churned Passenger (19.74%)**: A large group of previously low-value customers who are now inactive. This segment represents a key opportunity for win-back campaigns and reactivation offers.
+- **Passenger (4.86%)**: Low-frequency, low-value customers who are still active. They are at risk of churning and require light-touch engagement.
+- **Regular (70.40%)**: The most stable and reliable segment. These customers maintain regular activity and should be continuously supported and monitored for changes in behavior.
+- **Loyal (4.70%)**: High-frequency customers with recent activity. This group should be nurtured to maintain their loyalty and increase their lifetime value.
+- **Churned Loyal (0.05%)**: A very small but valuable group that has recently disengaged. Targeted win-back efforts may be particularly effective given their previous engagement and value.
+- **Champion (0.25%)**: The top-tier customers who spend the most and engage frequently. Even though no churn was detected in this group, continued personalized attention is crucial to avoid future losses.
+
+Incorporating churn status into the RFM-based clustering model provides a richer understanding of customer dynamics. This refined segmentation enables the business to:
+- Identify high-priority reactivation targets.
+- Focus retention strategies on at-risk but valuable customers.
+- Maximize the value of active segments through tailored engagement.
 
 ## Customer Dataset Description
 Below is a description of the features in the customer dataset:
