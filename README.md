@@ -1,7 +1,7 @@
 # Customer RFM Segmentation for E-Commerce
 
 ## Description
-This project utilizes the RFM (Recency, Frequency, Monetary) method to segment customers of a UK-based online retailer using transactional data from 2010-2011. Through data analysis and clustering algorithms, we transform raw data into actionable customer profiles, enabling optimized marketing strategies, improved customer retention, and increased sales by identifying and understanding the purchasing behavior of the most valuable customers.
+This project utilizes the RFM (Recency, Frequency, Monetary) method to segment customers of a UK-based online retailer using transactional data between 01/12/2010 and 09/12/2011. Through data analysis and clustering algorithms, we transform raw data into actionable customer profiles, enabling optimized marketing strategies, improved customer retention, and increased sales by identifying and understanding the purchasing behavior of the most valuable customers.
 
 Results are visualized in a [Looker Studio dashboard](https://lookerstudio.google.com/s/kaK3n1F1tMA)
 
