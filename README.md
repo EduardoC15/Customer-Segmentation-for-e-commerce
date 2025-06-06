@@ -13,7 +13,7 @@ The dataset is sourced from the **UCI Machine Learning Repository** and contains
 - **Description**: Product description.
 - **Quantity**: Number of units purchased in the transaction.
 - **InvoiceDate**: Date and time of the transaction.
-- **UnitPrice**: Unit price of the product in pounds sterling.
+- **Price**: Unit price of the product in pounds sterling.
 - **Customer ID**: Unique customer identifier.
 - **Country**: Customer's country.
 
